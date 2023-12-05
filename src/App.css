@@ -2,6 +2,9 @@ html.dark {
   background-color: rgb(15,23,42);
 }
 
+body {
+  background-color: aquamarine;
+}
 
 .App {
   text-align: center;
