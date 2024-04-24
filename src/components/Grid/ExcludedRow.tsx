@@ -36,12 +36,13 @@ export const ExcludedRow: React.FC<RowProps> = ({onUpdate}) => {
             <input 
                 id='exclude_letters' 
                 value={cellValues}
+                title="cell"
                 onChange={ handleCellChange}
                 className='w-full-1 leading-[1.875rem] py-2 px-2 focus:outline-none font-bold text-[16px] uppercase border border-grey bg-[#F4F4F4] focus:bg-[#ffffff] placeholder-shown:bg-[#ffffff] rounded-lg' />
             </div>
             {cellValues && (
                 <div className="text-right">
-                    <button className="clear-all-link !pr-0" onClick={handleClear } >
+                    <button type="reset" className="clear-all-link !pr-0" onClick={handleClear } >
                         Clear all
                     </button>
                 </div>

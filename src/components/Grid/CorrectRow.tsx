@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { EmptyRow } from './EmptyRow';
+import React, { useState } from 'react';
+// import { EmptyRow } from './EmptyRow';
 
 interface RowProps {
     onUpdate: (cellValues: string[]) => void;
@@ -51,7 +51,7 @@ export const CorrectRow: React.FC<RowProps> = ({onUpdate}) => {
                             key={i}
                             data-id={i} 
                             maxLength={1} 
-                            placeholder=" "
+                            title='letter'
                             className= {classes}
                             value={value}
                             onChange={(e) => handleCellChange(e.target.value, i)}
@@ -61,7 +61,7 @@ export const CorrectRow: React.FC<RowProps> = ({onUpdate}) => {
                 {!isEmpty && (
                         <div className="text-right">Values: {cellValues.join(', ')} 
                         {isError && (<div className='text-right text-red-500'>{isError}</div>)}
-                        <button className="clear-all-link !pr-0" onClick={handleClear } >
+                        <button type='reset' className="clear-all-link !pr-0" onClick={handleClear } >
                             Clear all
                         </button>
                     </div>

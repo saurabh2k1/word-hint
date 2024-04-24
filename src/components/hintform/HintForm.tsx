@@ -33,6 +33,7 @@ export const HintForm = () => {
     }
 
     return (
+      <div className="grid grid-cols-3 gap-2">
         <form onSubmit={handleSubmit}>
           <div className='max-w-[390px] mx-auto mobile:mt-5'>
             <div className='bg-white rounded-lg shadow-lg p-6 mobile:p-4'>
@@ -51,8 +52,12 @@ export const HintForm = () => {
               <p>Correct Letters: {correctLetters}</p>
               <p>Misplaced Letters: {misplacedLetters}</p>
             </div>
-            <ResultCard  wordList={findWord(WORDS,correctLetters)} />
+            
           </div>
         </form>
+        <div>
+        <ResultCard  wordList={findWord(WORDS,correctLetters)} /> 
+        </div>
+      </div>
     )
 }
