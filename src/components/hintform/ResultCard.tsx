@@ -1,5 +1,5 @@
 import { wordSplit } from "@/lib/words";
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 
 interface ResultProps {
     wordList: string[];
@@ -7,15 +7,21 @@ interface ResultProps {
 
 export const ResultCard: React.FC<ResultProps> = ({wordList}) => {
     const [words, setWords] = useState<string[]>(wordList);
-    const [displayedWords, setDisplayedWords] = useState<string[]>(wordList.slice(0, 10));
+    const [displayedWords, setDisplayedWords] = useState<string[]>(wordList.slice(0, 20));
 
     const handleMore = () => {
         const nextIndex = displayedWords.length;
         const nextWords = words.slice(nextIndex, nextIndex + 10);
         setDisplayedWords([...displayedWords, ...nextWords ]);
     }
+
+    useEffect(() => {
+        setWords(wordList);
+        setDisplayedWords(wordList.slice(0, 20));
+    }, [wordList])
+
     return (
-        <div className='bg-white rounded-lg shadow-lg p-4 mobile:p-4'>
+        <div className='relative bg-white rounded-lg shadow-lg p-4 mobile:p-4'>
             <div className="px-6 py-4">
                 <h3 className="font-bold text-xl mb-2">Suggested Words</h3>
             </div>
@@ -27,12 +33,14 @@ export const ResultCard: React.FC<ResultProps> = ({wordList}) => {
                 );
             })}
             </div>
+            <div className="px-6 py-4 w-full">
             <button
                 type="submit"
                 onClick={handleMore}
-            className="flex  bg-blue-500 mt-3 text-white py-2 px-4 rounded-md hover:bg-blue-600">
+            className="right-0 bg-blue-500 mt-3 text-white py-2 px-4 rounded-md hover:bg-blue-600">
                 More ..
             </button>
+            </div>
         </div>
     );
 }

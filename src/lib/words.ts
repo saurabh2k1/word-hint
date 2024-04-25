@@ -39,17 +39,25 @@ export const getNonEmptyValuesAndIndices = (arr: string[]): {values: string[], i
     return {values: nonEmptyValues, indices: indices}
 }
 
-export const findWord = (wordList: string[], filterWord: string[]): string[] => {
+export const findWord = (wordList: string[], correctWords: string[], misplacedWords: string[] = []): string[] => {
     
    const result: string[] = wordList.filter((word) => {
         
         const wArray = wordSplit(word);
         let dTrue = true;
-        for (let i = 0; i < filterWord.length; i++){
-            if (filterWord[i] !== '' && wArray[i] !== filterWord[i]) {
+        for (let i = 0; i < correctWords.length; i++){
+            if (correctWords[i] !== '' && wArray[i] !== correctWords[i]) {
                 dTrue = false
             } 
         }
+        if (misplacedWords.length > 0){
+          misplacedWords.forEach((mWord, index) => {
+            if (!word.includes(mWord)) {
+              dTrue = false;
+            } 
+          })
+        }
+
         return dTrue;
     })
     return result;
