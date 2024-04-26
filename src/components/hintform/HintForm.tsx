@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react"
 import { CorrectRow, MisplacedRow, ExcludedRow } from "../Grid"
-import { findWord, findWordsWithLettersAtPositions, getNonEmptyValuesAndIndices } from "../../lib/words";
-import { WORDS } from "../../constant/wordlist";
+import { findWord } from "../../lib/words";
+import { WORDS } from "../../constant/nwordlist";
 import { ResultCard } from "./ResultCard";
 
 export const HintForm = () => {
@@ -33,7 +33,7 @@ export const HintForm = () => {
     }
 
     return (
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-3 mb-40 mt-6 sm:grid-cols-3">
         <form onSubmit={handleSubmit}>
           <div className='max-w-[390px] mx-auto mobile:mt-5'>
             <div className='bg-white rounded-lg shadow-lg p-6 mobile:p-4'>
@@ -48,15 +48,15 @@ export const HintForm = () => {
                 <span className='justify-self-center font-bold'>Search</span>
               </button>
             </div>
-            <div className="bg-white rounded-lg shadow-lg p-6 mobile:p-4 m-2">
+            {/* <div className="bg-white rounded-lg shadow-lg p-6 mobile:p-4 m-2">
               <p>Correct Letters: {correctLetters}</p>
               <p>Misplaced Letters: {misplacedLetters}</p>
-            </div>
+            </div> */}
             
           </div>
         </form>
         <div>
-        <ResultCard  wordList={findWord(WORDS,correctLetters, misplacedLetters)} /> 
+        <ResultCard  wordList={findWord(WORDS,correctLetters, misplacedLetters, excludedLetters)} /> 
         </div>
       </div>
     )
